@@ -1,0 +1,957 @@
+<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="Etu"> <img src="../assets/img/brand/logo.png" class="navbar-brand-img" alt="...">
+        </a>
+        <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+            <ul class="navbar-nav">
+                <li class="nav-item "><a class="nav-link " href="Etu"> <i class="ni ni-single-02 text-blue"></i>
+                        Gestion Etudiant
+                    </a></li>
+                <li class="nav-item "><a class="nav-link" href="Insc"> <i class="ni ni-circle-08 text-blue"></i>
+                        Inscription
+                    </a></li>
+
+                
+
+            </ul>
+            
+            
+            <ul class="navbar-nav ">
+                <li class="nav-item"><a class="nav-link "  href="#"  href="enregistrement" >
+                    <i
+                    class="fas fa-graduation-cap text-blue"></i>Enregistrement
+                    </a></li>
+            </ul>
+			<ul class="navbar-nav ">
+                <li class="nav-item"><a class="nav-link " href="fichier">
+                    <i class="ni ni-book-bookmark text-blue"></i>
+
+Fiche de presnce
+                    </a></li>
+            </ul>
+            <hr class="my-3">
+            <ul class="navbar-nav ">
+                <li class="nav-item"><a class="nav-link "  (click)="logout()" href="#" >
+                        <i  class="ni ni-user-run text-blue"></i> Se déconnecter
+                    </a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="main-content">
+	<!-- Navbar -->
+	<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+		<div class="container-fluid">
+			<!-- Brand -->
+			<a></a>
+
+			<!-- User -->
+			<ul class="navbar-nav align-items-center d-none d-md-flex">
+				<li class="nav-item dropdown"><a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">
+						<div class="media align-items-center">
+							<span class="avatar avatar-sm rounded-circle"> <i class="fas fa-user"></i>
+							</span>
+							<div class="media-body ml-2 d-none d-lg-block">
+								
+								<div class="dropdown" style="float:right;">
+									<span >
+										{{prenomuser}} {{nomuser}} </span>&nbsp; &nbsp;
+
+									<div class="dropdown-content" >
+										<a class="dropdown-item"
+															
+										target="self" *ngFor="let cm of role" (click)="change(cm)" > {{cm}}</a>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<!-- End Navbar -->
+	<!-- Header -->
+
+	<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+		style="min-height: 100px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+		<!-- Mask -->
+		<span class="mask bg-gradient-default opacity-6"></span>
+		<!-- Header container -->
+		<div class="container-fluid d-flex align-items-center">
+			<div class="row">
+				<div class="col-lg-12 col-md-10">
+					<h3 class="display-2 text-white">Modifier Étudiant</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br> <br> <br>
+
+	<!-- Page content -->
+	<div class="container-fluid mt--7">
+		<div class="row">
+
+			<div class="col-xl-12 order-xl-3">
+				<div class="card bg-secondary shadow">
+					<div class="card-header bg-white border-0">
+						<div class="row align-items-center">
+							<div class="col-8">
+								<h3 class="mb-0">Etudiant</h3>
+							</div>
+							<div class="col-4 text-right">
+								<!--<a href="#!" class="btn btn-sm btn-primary">Settings</a>-->
+							</div>
+						</div>
+					</div>
+					<div class="card-body">
+							<h6 class="heading-small text-muted mb-4">Données
+								Personelles</h6>
+							<div class="pl-lg-4">
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label class="form-control-label">Nom : </label>
+											{{form.nom}}
+										</div>
+										
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label class="form-control-label">Prénom : </label>
+											{{form.prenom}} 
+										</div>
+										
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label class="form-control-label">Email : </label> 
+											{{form.email}}
+										</div>
+										
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label class="form-control-label">Adresse : </label>
+											{{form.adresse}} 
+										</div>
+										
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label class="form-control-label">Téléphone : </label>
+											{{form.tel}}
+										</div>
+										
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label class="form-control-label">Date de naissance : </label>
+											{{form.dn}}
+										
+										</div>
+										
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label class="form-control-label">Lieu de naissance : </label>
+											{{form.ln}}
+										</div>
+										
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label class="form-control-label">Identificateur : </label>
+											{{Etudidentificateur}}
+										</div>
+										
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label class="form-control-label">Num Identificateur</label>
+											{{form.numid}}
+										</div>
+										
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label class="form-control-label">Sexe : </label>
+											{{form.sexe}} 
+										</div>
+										
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label class="form-control-label">Nationalité : </label> 
+											{{Etudnationalite}}
+										</div>
+										
+									</div>
+								
+									
+								</div>
+								<!--Modifier avec modal-->
+								<ng-template #content8 let-modal>
+									<div class="modal-body">
+
+										<form name="form" (ngSubmit)="f.form.valid && onSubmit(content7)" #f="ngForm" novalidate>
+											<h6 class="heading-small text-muted mb-4">Donnéess
+												Personelles</h6>
+											<div class="pl-lg-4">
+												<div class="row">
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Nom</label> <input
+																class="form-control form-control-alternative" 
+																type="text"  name="username"
+																[(ngModel)]="form.nom" required #nom="ngModel"
+																name="nom" placeholder="Nom" />
+														</div>
+														<div class="alert alert-danger" role="alert" *ngIf="f.submitted && nom.invalid">
+															nom is required!
+														</div>
+													</div>
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Prénom</label> <input
+																class="form-control form-control-alternative" 
+																[(ngModel)]="form.prenom" required #prenom="ngModel"
+																name="prenom" placeholder="Prénom" type="text"
+																value="">
+														</div>
+														<div class="alert alert-danger" role="alert" *ngIf="f.submitted && prenom.invalid">
+															prenom is required!
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Email</label> <input
+																class="form-control form-control-alternative" name="mail"
+																[(ngModel)]="form.email" required #email="ngModel"
+				
+																placeholder="Email" type="text" >
+														</div>
+														<div class="alert alert-danger" role="alert" *ngIf="f.submitted && email.invalid">
+															email is required!
+														</div>
+													</div>
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Adresse</label> <input
+																class="form-control form-control-alternative" name="adresse"
+																[(ngModel)]="form.adresse" required #adresse="ngModel"
+																placeholder="Adresse" type="text">
+														</div>
+														<div class="alert alert-danger" role="alert" *ngIf="f.submitted && adresse.invalid">
+															Adresse is required!
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Téléphone</label> <input
+																class="form-control form-control-alternative" name="tele"
+																[(ngModel)]="form.tel" required #tel="ngModel" minlength="8"
+																placeholder="Téléphone" type="text">
+														</div>
+														<div class="alert alert-danger" role="alert" *ngIf="f.submitted && tel.invalid">
+															Téléphone is required!
+														</div>
+													</div>
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Date de naissance</label>
+															<input class="form-control form-control-alternative" name="dn"
+															[(ngModel)]="form.dn" required #dn="ngModel" 
+				
+																placeholder="Date de naissance" type="date"
+																value="">
+														</div>
+														<div class="alert alert-danger" role="alert" *ngIf="f.submitted && dn.invalid">
+															Date de naissance is required!
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Lieu de naissance</label>
+															<input class="form-control form-control-alternative" name="ln"
+																placeholder="Lieu de naissance" type="text"
+																[(ngModel)]="form.ln" required #ln="ngModel">
+														</div>
+														<div class="alert alert-danger" role="alert" *ngIf="f.submitted && ln.invalid">
+															Lieu de naissance is required!
+														</div>
+													</div>
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Identificateur</label> <select
+																class="form-control form-control-alternative" name="id"
+																[(ngModel)]="form.identificateur" required >
+				
+															
+																<option *ngFor="let item of identificateur"
+																[value]="item.idTypeidentificateur">
+																{{item.typeIdentificateur}}</option>
+						
+				
+															</select>
+														</div>
+														<div class="alert alert-danger" role="alert" *ngIf="f.submitted && identificateur.invalid">
+															Identificateur is required!
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Num Identificateur</label>
+															<input class="form-control form-control-alternative" name="numid"
+															[(ngModel)]="form.numid" required #numid="ngModel"
+																placeholder="Num Identificateur" type="text"
+																>
+														</div>
+														<div class="alert alert-danger" role="alert" *ngIf="f.submitted && numid.invalid">
+															Num Identificateur is required!
+														</div>
+													</div>
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Sexe</label> <select
+																class="form-control form-control-alternative" name="sexe"
+																[(ngModel)]="form.sexe" required #sexe="ngModel"
+																>
+				
+																<option value="Homme">Homme</option>
+																<option value="Femme">Femme</option>
+				
+															</select>
+														</div>
+														<div class="alert alert-danger" role="alert" *ngIf="f.submitted && numid.invalid">
+															Sexe is required!
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Nationalité</label> <select
+																class="form-control form-control-alternative" name="nationalite"
+																[(ngModel)]="form.nationalite" required 
+																>
+				
+																<option *ngFor="let cm of nationalite"
+																[value]="cm.id_Nationalite">{{cm.libelle}}</option>
+				
+															</select>
+														</div>
+														
+													</div>
+													<div class="col-lg-6">
+														
+													</div>
+													
+												</div>
+												<ng-template #content7  style="min-height: 300px;width: 500px;" let-modal>
+													<div class="modal-body">
+				
+														<div class="alert alert-success" role="alert">
+															Données Personnel Modifier avec succee
+														  </div>
+														</div>
+				
+												</ng-template>
+												<div class="row">
+													<div class="col-sm-2"><button class="btn btn-form btn-success" (click)="modal.dismiss('Cross click')" [disabled]="f.form.invalid" type="submit">Enregistrer</button>
+													</div>
+												  </div>
+				
+											</div>
+										</form>
+										</div>
+
+								</ng-template>
+								<!--Modifier avec modal-->
+
+								<div class="row">
+									<div class="col-sm-4"></div>
+									<div class="col-sm-4"><button class="btn btn-form btn-success" (click)="openModallg(content8)">Modifier</button>
+									</div>
+									<div class="col-sm-4"></div>
+								  </div>
+								
+							
+
+							</div>
+							<hr class="my-4" />
+							<!-- Address -->
+							<h6 class="heading-small text-muted mb-4">Contact Parentale</h6>
+							<div class="pl-lg-4">
+								<table class="table align-items-center table-flush">
+									<thead class="thead-light">
+										<tr>
+											<th>Designation</th>
+											<th>Nom</th>
+											<th>Téléphone</th>
+											<th></th>
+										</tr>
+									</thead>
+
+									<tr>
+										<tr *ngFor="let cm of contactEtudiantList">
+											<td scope="row">
+												<div class="media align-items-center">
+													<div class="media-body">
+
+														<span class="mb-0 text-sm">{{cm.designation}}</span>
+													</div>
+												</div>
+											</td>
+											<td><span class="mb-0 text-sm">{{cm.nom}}</span></td>
+											<td><span class="badge badge-dot mr-4"> <span
+														class="mb-0 text-sm">{{cm.numero}} </span>
+												</span></td>
+										<td>
+											<ng-template #content4 let-modal>
+												<div class="modal-header">
+													<h4 class="modal-title" id="modal-basic-title">Modifier Contact</h4>
+													<button type="button" class="close" aria-label="Close"
+														(click)="modal.dismiss('Cross click')">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												
+												<div class="modal-footer">
+													<div class="pl-lg-4">
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label class="form-control-label"
+																	for="input-address">Designation</label>
+																<input id="input-address"
+																	class="form-control form-control-alternative"
+																	placeholder="Designation" [(ngModel)]="designation"
+																	[ngModelOptions]="{standalone: true}" name="desip"
+																	type="text">
+															</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-lg-6">
+															<div class="form-group">
+																<label class="form-control-label" for="input-city">Nom
+																	& Prénom</label> <input type="text" id="input-city"
+																	[(ngModel)]="nom" [ngModelOptions]="{standalone: true}"
+																	class="form-control form-control-alternative"
+																	placeholder="Nom" name="nomp">
+															</div>
+														</div>
+														<div class="col-lg-6">
+															<div class="form-group">
+																<label class="form-control-label"
+																	for="input-country">Téléphone</label>
+																<input type="tel" id="input-country" [(ngModel)]="numero"
+																pattern="[0-9]*"
+																maxlength="15"
+																minlength="8"
+																required
+																	[ngModelOptions]="{standalone: true}"
+																	class="form-control form-control-alternative"
+																	placeholder="Téléphone" name="nump">
+															</div>
+														</div>
+														
+													</div>
+													<div class="row">
+														<div class="col-lg-6">
+															<button type="button" class="btn btn-outline-dark"
+															(click)="modal.dismiss('Cross click')">annuler</button>
+														</div>
+														<div class="col-lg-6">
+															<button type="button" class="btn btn-outline-dark"
+															(click)="modal.dismiss('Cross click')"
+															(click)="modifierContactEtudient(cm)"
+															>enregistre</button>
+														</div>
+														
+													</div>
+													</div>
+												</div>
+											</ng-template>
+											<a class="btn btn-sm btn-info" (click)="openModifierContactParentModal(content4,cm)">Modifier Parent</a>
+											<a class="btn btn-sm btn-danger" (click)="supprimerContactParent(cm)">Supprimer Parent</a></td>
+									</tr>
+
+								</table>
+								<div class="row">
+									<div class="col-sm-4"></div>
+									<ng-template #content9 let-modal>
+										<div class="modal-header">
+											<h4 class="modal-title" id="modal-basic-title">Ajputer Contact</h4>
+											<button type="button" class="close" aria-label="Close"
+												(click)="modal.dismiss('Cross click')">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										
+										<div class="modal-footer">
+											<div class="pl-lg-4">
+											<div class="row">
+												<div class="col-md-12">
+													<div class="form-group">
+														<label class="form-control-label"
+															for="input-address">Designation</label>
+														<input id="input-address"
+															class="form-control form-control-alternative"
+															placeholder="Designation" [(ngModel)]="designation"
+															[ngModelOptions]="{standalone: true}" name="desip"
+															type="text">
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-lg-6">
+													<div class="form-group">
+														<label class="form-control-label" for="input-city">Nom
+															& Prénom</label> <input type="text" id="input-city"
+															[(ngModel)]="nom" [ngModelOptions]="{standalone: true}"
+															class="form-control form-control-alternative"
+															placeholder="Nom" name="nomp">
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<div class="form-group">
+														<label class="form-control-label"
+															for="input-country">Téléphone</label>
+														<input type="tel" id="input-country" [(ngModel)]="numero"
+														pattern="[0-9]*"
+																maxlength="15"
+																minlength="8"
+																required
+															[ngModelOptions]="{standalone: true}"
+															class="form-control form-control-alternative"
+															placeholder="Téléphone" name="nump">
+													</div>
+												</div>
+												
+											</div>
+											<div class="row">
+												<div class="col-lg-6">
+													<button type="button" class="btn btn-outline-dark"
+													(click)="modal.dismiss('Cross click')">annuler</button>
+												</div>
+												<div class="col-lg-6">
+													<button type="button" class="btn btn-outline-dark"
+													(click)="modal.dismiss('Cross click')"
+													(click)="enregistrecontact()"
+													>enregistre</button>
+												</div>
+												
+											</div>
+											</div>
+										</div>
+									</ng-template>
+									<div class="col-sm-4"><button class="btn btn-form btn-success" (click)="openajouterContactparentale(content9)">Ajouter contact</button>
+									</div>
+									<div class="col-sm-4"></div>
+								  </div>
+							</div>
+							
+							
+							
+							<hr class="my-4" />
+							<!-- Description -->
+							<h6 class="heading-small text-muted mb-4">Anciens diplomes</h6>
+							<div class="pl-lg-4">
+								<div class="table-responsive">
+									<table class="table align-items-center table-flush"
+									 id="tableetudiant">
+									<thead class="thead-light">
+										<tr>
+											<th scope="col">Diplome</th>
+											<th scope="col">Specialite</th>
+											<th scope="col">Niveau</th>
+											<th scope="col">Status</th>
+											<th scope="col">Etablissement</th>
+											<th scope="col">Annee</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let item5 of diplomeEtudiantList">
+											<td scope="row">
+												<div class="media align-items-center">
+													<div class="media-body">
+														<span class="mb-0 text-sm">{{item5.nomDiplome}}</span>
+													</div>
+												</div>
+											</td>
+											<td><span class="mb-0 text-sm">{{item5.specialite}}</span></td>
+											<td><span class="badge badge-dot mr-4"> <span
+														class="mb-0 text-sm">{{item5.niveau}} </span>
+												</span></td>
+											<td><span class="mb-0 text-sm">{{item5.status}}</span></td>
+											<td><span class="mb-0 text-sm">{{item5.etablissement}}</span></td>
+											<td><span class="mb-0 text-sm">{{item5.annee}}</span></td>
+											<td>
+												<ng-template #content0 let-modal>
+													<div class="modal-header">
+														<h4 class="modal-title" id="modal-basic-title">Modifier Diplome</h4>
+														<button type="button" class="close" aria-label="Close"
+															(click)="modal.dismiss('Cross click')">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<div class="modal-body">
+														<div class="row">
+															<div class="col-lg-12">
+																<div class="form-group">
+																	<label class="form-control-label">Diplome</label> <select
+																		class="form-control form-control-alternative" name="Diplome"
+																		[(ngModel)]="idDiplome1"
+																		
+
+																		[ngModelOptions]="{standalone: true}" id="slctd">
+																		<option *ngFor="let item4 of diplome"
+																			[value]="item4.idDiplome">{{item4.nomDiplome}}</option>
+			
+																	</select>
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-lg-6">
+																<div class="form-group">
+																	<label class="form-control-label">Specialité</label> <input
+																		type="text" class="form-control form-control-alternative"
+																		[(ngModel)]="specialite"
+																		[ngModelOptions]="{standalone: true}"
+																		placeholder="Specialité" name="specialited">
+																</div>
+															</div>
+															<div class="col-lg-6">
+																<div class="form-group">
+																	<label class="form-control-label">Année du diplome</label>
+																	<input type="number" min=1900 max=2020
+																		class="form-control form-control-alternative"
+																		[(ngModel)]="annee" [ngModelOptions]="{standalone: true}"
+																		placeholder="Année du diplome" name="anneed">
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-lg-6">
+																<div class="form-group">
+																	<label class="form-control-label">Niveau</label> <select
+																		class="form-control form-control-alternative" name="niveaud"
+																		[(ngModel)]="niveau" [ngModelOptions]="{standalone: true}"
+																		id="slctnv">
+																		<option [value]="1">1</option>
+																		<option [value]="2">2</option>
+																		<option [value]="3">3</option>
+																		<option [value]="4">4</option>
+																		<option [value]="5">5</option>
+																	</select>
+																</div>
+															</div>
+															<div class="col-lg-6">
+																<div class="form-group">
+																	<label class="form-control-label">Status</label> <select
+																		class="form-control form-control-alternative" name="statusd"
+																		id="slctstt" [(ngModel)]="status"
+																		[ngModelOptions]="{standalone: true}">
+																		<option value="Complet">Complet</option>
+																		<option value="Incomplet">Incomplet</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-lg-6">
+																<div class="form-group">
+																	<label class="form-control-label">Établissement</label> <input
+																		type="text" class="form-control form-control-alternative"
+																		placeholder="Établissement du diplome" name="etablissement"
+																		[(ngModel)]="etablissement"
+																		[ngModelOptions]="{standalone: true}">
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-outline-dark"
+														(click)="modal.dismiss('Cross click')"
+														(click)="modifierdiplome(item5)">Enregistre</button>
+													</div>
+												</ng-template>
+												
+												<a class="btn btn-sm btn-info" (click)="openaModifierDiplome(content0,item5)">Modifier </a>
+												
+												<!--Supprimer Diplome-->
+													
+											<ng-template #content3 >
+												<div class="modal-body">
+
+												<div class="alert alert-success" role="alert">
+													diplome Supprimer avec succee
+												  </div>
+												</div>
+
+											</ng-template>
+												<a class="btn btn-sm btn-danger" (click)="supprimerDiplomeEtudients(content3,item5)" >Supprimer </a></td>
+
+									</tr>
+
+								</tbody>
+							</table>
+							
+							  
+								</div>
+								<div class="row" id="newline">
+									<div class="col-lg-4"></div>
+									<ng-template #content7 let-modal>
+										<div class="modal-header">
+											<h4 class="modal-title" id="modal-basic-title">Modifier Diplome</h4>
+											<button type="button" class="close" aria-label="Close"
+												(click)="modal.dismiss('Cross click')">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<div class="row">
+												<div class="col-lg-12">
+													<div class="form-group">
+														<label class="form-control-label">Diplome</label> <select
+															class="form-control form-control-alternative" name="Diplome"
+															[(ngModel)]="idDiplome1"
+															
+
+															[ngModelOptions]="{standalone: true}" id="slctd">
+															<option *ngFor="let item4 of diplome"
+																[value]="item4.idDiplome">{{item4.nomDiplome}}</option>
+
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-lg-6">
+													<div class="form-group">
+														<label class="form-control-label">Specialité</label> <input
+															type="text" class="form-control form-control-alternative"
+															[(ngModel)]="specialite"
+															[ngModelOptions]="{standalone: true}"
+															placeholder="Specialité" name="specialited">
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<div class="form-group">
+														<label class="form-control-label">Année du diplome</label>
+														<input type="number" min=1900 max=2020
+															class="form-control form-control-alternative"
+															[(ngModel)]="annee" [ngModelOptions]="{standalone: true}"
+															placeholder="Année du diplome" name="anneed">
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-lg-6">
+													<div class="form-group">
+														<label class="form-control-label">Niveau</label> <select
+															class="form-control form-control-alternative" name="niveaud"
+															[(ngModel)]="niveau" [ngModelOptions]="{standalone: true}"
+															id="slctnv">
+															<option [value]="1">1</option>
+															<option [value]="2">2</option>
+															<option [value]="3">3</option>
+															<option [value]="4">4</option>
+															<option [value]="5">5</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<div class="form-group">
+														<label class="form-control-label">Status</label> <select
+															class="form-control form-control-alternative" name="statusd"
+															id="slctstt" [(ngModel)]="status"
+															[ngModelOptions]="{standalone: true}">
+															<option value="Complet">Complet</option>
+															<option value="Incomplet">Incomplet</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-lg-6">
+													<div class="form-group">
+														<label class="form-control-label">Établissement</label> <input
+															type="text" class="form-control form-control-alternative"
+															placeholder="Établissement du diplome" name="etablissement"
+															[(ngModel)]="etablissement"
+															[ngModelOptions]="{standalone: true}">
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-outline-dark"
+											(click)="modal.dismiss('Cross click')"
+											(click)="enregistrediplome()">Enregistre</button>
+										</div>
+									</ng-template>
+									<div class="col-lg-4"><button class="btn btn-form btn-success"(click)="openajouterdiplomemodal(content7)" >Ajouter Diplome </button>
+									</div>
+									<div class="col-lg-4"></div>
+								</div>
+							</div>
+							
+						
+							<hr class="my-4" />
+							<!-- New Diplome -->
+							<h6 class="heading-small text-muted mb-4">Nouveau Diplome</h6>
+							<div class="pl-lg-4">
+								<label class="form-control-label"><h3>cette etudient inscrit en  : </h3></label>
+								{{diplomeCourent}}
+								<ng-template #content2 >
+									<div class="modal-body">
+										 <div class="row" *ngIf="!niveaupossibletest">
+											
+											<div class="col-sm">
+												<div  class="form-group">
+													<label class="form-control-label"
+														for="input-address">Diplome</label>
+													<select  class="form-control form-control-alternative"
+														 [(ngModel)]="idNiveau"
+														[ngModelOptions]="{standalone: true}" 
+														id="Niveua">
+														<option *ngFor="let item1 of niveaupossible" [value]="item1.idNiveau">
+															{{item1.designation}}</option>
+													</select>
+												</div>											</div>
+											
+										</div>
+										<div class="row"  *ngIf="niveaupossibletest">
+											<div class="col-md-3">
+												<div  class="form-group">
+													<label class="form-control-label"
+														for="input-address">Cycle</label>
+													<select  class="form-control form-control-alternative"
+														(change)="getSpecialite()" [(ngModel)]="idCycle"
+														[ngModelOptions]="{standalone: true}" name="cycled"
+														id="cyle">
+														<option *ngFor="let item1 of Cycle" [value]="item1.idCycle">
+															{{item1.description}}</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="form-group">
+													<label class="form-control-label"
+														for="input-address">Specialité</label>
+													<select  class="form-control form-control-alternative" id="spec"
+														(change)="getParcours()" [(ngModel)]="idSpecialite"
+														[ngModelOptions]="{standalone: true}" name="specd">
+														<option></option>
+														<option *ngFor="let item2 of Specialite"
+															[value]="item2.idSpecialite">
+															{{item2.designation}}
+														</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="form-group">
+													<label class="form-control-label"
+														for="input-address">Parcours</label>
+													<select   class="form-control form-control-alternative"
+														name="parcourd" id="parc" (change)="getNiveau()"
+														[(ngModel)]="idParcours"
+														[ngModelOptions]="{standalone: true}">
+														<option></option>
+
+														<option *ngFor="let item3 of Parcours"
+															[value]="item3.idParcours"> {{item3.designation}}
+														</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="form-group">
+													<label class="form-control-label"
+														for="input-address">Niveau</label>
+													<select  class="form-control form-control-alternative"
+														name="nivd" id="nouv" [(ngModel)]="idNiveau"
+														[ngModelOptions]="{standalone: true}" required>
+														<option *ngFor="let item4 of niveaux"
+															[value]="item4.idNiveau"> {{item4.designation}}
+														</option>
+
+													</select>
+												</div>
+											</div>
+
+										</div>
+										<div class="modal-footer">
+										<button type="button" class="btn btn-outline-dark"
+										(click)="modiferDiplomecourant()"
+										>Save</button>
+									</div>
+								</div>
+
+
+								</ng-template>
+							
+							</div>
+						
+							<div class="row">
+								<div class="col-lg-5"></div>
+								<div class="col-lg-3">
+									<button class="btn btn-form btn-success" (click)="openModifierdiplomecourrent(content2)"type="submit">Modifier Diplome Courrent</button>
+								</div>
+								<div class="col-lg-4"></div>
+							</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="row align-items-center justify-content-xl-between">
+				<div class="col-xl-6">
+					<div class="copyright text-center text-xl-left text-muted">
+						Â© 2019 <a class="font-weight-bold ml-1" href="http://www.essat-gabes.com/"
+							target="_blank">ESSAT
+							GABES</a>
+					</div>
+				</div>
+
+			</div>
+		</footer>
+	</div>
+</div>
+<!--   Core   -->
+<script src="../assets/js/plugins/jquery/dist/jquery.min.js"></script>
+<script src="../assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<!--   Optional JS   -->
+<!--   Argon JS   -->
+<script src="../assets/js/argon-dashboard.min.js?v=1.1.0"></script>
+<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+<script src="../assets/js/ajoutdiplome.js"></script>
+<script src="../assets/js/ParentDiplomeModify.js"></script>
