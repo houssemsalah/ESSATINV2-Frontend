@@ -25,7 +25,7 @@
                 <li class="nav-item"><a class="nav-link " href="fichier"  >
                     <i class="ni ni-book-bookmark text-blue"></i>
 
-Fiche de presence
+Fiche de presnce
                     </a></li>
             </ul>
 
@@ -187,22 +187,22 @@ Fiche de presence
 															class="fas fa-ellipsis-v"></i>
 														</a>
 														<div
-														class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-														<a class="dropdown-item"  	>Modifier étudiant</a>
-														<a class="dropdown-item"
-														
-															target="self" >Fiche de renseignement </a>
-														
-														<a class="dropdown-item"
-															target="self" >Attestation d'inscription (SG) </a>
+															class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+															<a class="dropdown-item"  (click)="pushEtu(cm)"	>Modifier étudiant</a>
 															<a class="dropdown-item"
-															target="self" >Attestation d'inscription (DR) </a>
+															
+																target="self" (click)="downloadPdfinformation(cm)">Fiche de renseignement </a>
+															
 															<a class="dropdown-item"
-															target="self" >Attestation de Présence (SG) </a> <a
-															class="dropdown-item"
-															target="self"
-															>Attestation de Présence (DR) </a>
-														
+																target="self" (click)="downloadPdfinscriptionSG(cm)">Attestation d'inscription (SG) </a>
+																<a class="dropdown-item"
+																target="self" (click)="downloadPdfinscriptionDG(cm)">Attestation d'inscription (DR) </a>
+																<a class="dropdown-item"
+																target="self" (click)="downloadPdfpresenceSG(cm)">Attestation de Présence (SG) </a> <a
+																class="dropdown-item"
+																target="self"
+																(click)="downloadPdfpresenceDG(cm)">Attestation de Présence (DR) </a>
+															
 														</div>
 													</div>
 

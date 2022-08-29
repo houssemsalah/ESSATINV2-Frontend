@@ -5,7 +5,8 @@ const Sess_API = 'http://localhost:8080/api/session/';
 const GETETUDSS_API = 'http://localhost:8080/api/enregistrement/';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 
+  'Content-Type': 'application/json'})
 };
 @Injectable({ 
   providedIn: 'root'
@@ -17,10 +18,15 @@ export class SessionScolaireService {
   getsessionuniv() {
     return this.http.get(Sess_API + 'getall', httpOptions);
   }
-  getetudss(login: String): Observable<any> {
+  getetudss(login: any): Observable<any> {
     return this.http.post(GETETUDSS_API + 'getenregistrementbysession', {
       idSession: login,
     }, httpOptions);
+  }
 
+  getetudbyclass(niveaux:any,session:any): Observable<any> {
+      return this.http.post(GETETUDSS_API + 'getbyidns', {
+        idNiveaux:niveaux ,idSession:session,
+      }, httpOptions);
 }
 }

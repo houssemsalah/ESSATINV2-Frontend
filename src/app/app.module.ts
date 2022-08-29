@@ -47,6 +47,7 @@ import { AjoutNoteComponent } from './ajout-note/ajout-note.component';
 import { ComptesComponent } from './comptes/comptes.component';
 import { CreerCompteComponent } from './creer-compte/creer-compte.component';
 import { DashbordComponent } from './dashbord/dashbord.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -76,7 +77,8 @@ import { DashbordComponent } from './dashbord/dashbord.component';
     AjoutNoteComponent,
     ComptesComponent,
     CreerCompteComponent,
-    DashbordComponent
+    DashbordComponent,
+    FooterComponent
     
   ],  
   imports: [
@@ -84,6 +86,7 @@ import { DashbordComponent } from './dashbord/dashbord.component';
     [NotifierModule],
     AppRoutingModule,
     FormsModule,
+        ReactiveFormsModule,
     HttpClientModule,
     MatSlideToggleModule,
     Ng2SearchPipeModule,

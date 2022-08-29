@@ -62,7 +62,7 @@ this.roleEtat=this.roleEtat+1;
         this.id_session=this.sessionunivrchek.idSession
         this.SessionScolaireService.getetudss(this.id_session).subscribe(
           data => {
-console.log(data)      
+console.log("session : " ,this.sessionunivr[this.sessionunivr.length-1].idSession)      
       this.etu=data; 
           },
           () => {

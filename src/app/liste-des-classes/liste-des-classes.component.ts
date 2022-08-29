@@ -60,6 +60,10 @@ this.roleEtat=this.roleEtat+1;
     })
 
   }
+  pushniveau(idNiveau:any){
+    localStorage.setItem("idNiveau",JSON.stringify(idNiveau))
+    window.location.replace("etudiantsParClass")
+  }
   fichedepresnce(cm:any){
     console.log(cm.idNiveau)
     this.PdfgenerateService.getPdffichedepresnce(cm.idNiveau).subscribe(

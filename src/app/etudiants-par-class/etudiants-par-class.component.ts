@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionScolaireService } from '../services/session-scolaire.service';
 import { TokenStorageService } from '../services/token-storage.service';
-
 import { PdfgenerateService } from '../services/pdfgenerate.service';
 
 @Component({
@@ -14,6 +13,7 @@ export class EtudiantsParClassComponent implements OnInit {
  sessionunivr: any;
   sessionunivrchek:any;
   id_session: any;
+  id_niveaux: any ;
   etu: any;
   searchText: any;
   nom:any;
@@ -23,9 +23,12 @@ export class EtudiantsParClassComponent implements OnInit {
   roleEtat=0;
 
 
-  constructor(private tokenStorage: TokenStorageService ,private SessionScolaireService: SessionScolaireService,private PdfgenerateService :PdfgenerateService) { }
+  constructor(private tokenStorage: TokenStorageService ,private SessionScolaireService: SessionScolaireService,private PdfgenerateService :PdfgenerateService) {
+  
+   }
 
   ngOnInit(): void {
+    
     if (localStorage.length < 1) {
       window.location.replace('');
     }
@@ -39,39 +42,52 @@ export class EtudiantsParClassComponent implements OnInit {
     }
     if(this.role.length!=1){
 
-    for(var i in this.role){
-      if(this.role[i]!="ROLE_SCOLARITE"){
-this.roleEtat=this.roleEtat+1;       
-      }
-  }
-  if (localStorage.length < 1) {
-    window.location.replace('404');
-  }
-  if(this.roleEtat===this.role.length){
+      for(var i in this.role){
+        if(this.role[i]!="ROLE_SCOLARITE"){
+  this.roleEtat=this.roleEtat+1;       
+        }
+    }
+    if (localStorage.length < 1) {
+      window.location.replace('404');
+    }
+    if(this.roleEtat===this.role.length){
+  
+      window.location.replace('404');
+    }}
 
-    window.location.replace('404');
-  }}
+    if (localStorage.getItem("idNiveau")) {
+      console.log("idNiveau = " , localStorage.getItem("idNiveau"))
+      
+      this.id_niveaux = JSON.parse(localStorage.getItem("idNiveau")!)
+      
+    }
 
- 
-    this.nom = this.tokenStorage.getUsernom();
-    this.prenom = this.tokenStorage.getUserprenom();
     this.SessionScolaireService.getsessionuniv().subscribe(
       data => {
         this.sessionunivr = data;
         this.sessionunivrchek=this.sessionunivr[this.sessionunivr.length-1];
         this.id_session=this.sessionunivrchek.idSession
-        this.SessionScolaireService.getetudss(this.id_session).subscribe(
-          data => {
-console.log(data)      
-      this.etu=data; 
-          },
-          () => {
-          }
-        );
+        console.log('this.id_session : ',this.id_session) 
       },
       err => {
       }
     );
+        this.SessionScolaireService.getetudbyclass(this.id_niveaux,this.id_session).subscribe(
+          data => {
+   
+      this.etu=data; 
+      console.log('getetudbyclassssss : ',data)   
+          },
+          err => {
+          }
+        );
+     
+ 
+    console.log(" this.id_niveaux : ", this.id_niveaux)
+ 
+
+ 
+  
    
 
     
@@ -131,10 +147,7 @@ downloadPdfinformation(cm:any){
 })
 
 }
-pushEtu(cm:any){
-  localStorage.setItem("Etud",JSON.stringify(cm))
-  window.location.replace("detailleEtud")
-}
+
 do(){
   alert("ahhhh")
 }
