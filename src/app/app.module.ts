@@ -58,7 +58,6 @@ import { FooterComponent } from './footer/footer.component';
     EtudiantComponent,
     MdpoblierComponent,
     InscriptionComponent,
-
     DialogeComponent,
     DetailleEtudianteComponent,
     EnregistrementComponent,
