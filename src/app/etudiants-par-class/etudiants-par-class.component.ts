@@ -21,7 +21,10 @@ export class EtudiantsParClassComponent implements OnInit {
   long:number=0;
   role:any;
   roleEtat=0;
-
+ns={
+  "idNiveaux":0,
+  "idSession":0
+}
 
   constructor(private tokenStorage: TokenStorageService ,private SessionScolaireService: SessionScolaireService,private PdfgenerateService :PdfgenerateService) {
   
@@ -68,19 +71,26 @@ export class EtudiantsParClassComponent implements OnInit {
         this.sessionunivrchek=this.sessionunivr[this.sessionunivr.length-1];
         this.id_session=this.sessionunivrchek.idSession
         console.log('this.id_session : ',this.id_session) 
-      },
-      err => {
-      }
-    );
-        this.SessionScolaireService.getetudbyclass(this.id_niveaux,this.id_session).subscribe(
+        if (localStorage.getItem("idNiveau")) {
+          console.log("idNiveau = " , localStorage.getItem("idNiveau"))
+          
+          this.id_niveaux = JSON.parse(localStorage.getItem("idNiveau")!)
+          
+        }
+
+        this.ns={
+          "idNiveaux":this.id_niveaux ,
+          "idSession":this.id_session
+        }
+      this.SessionScolaireService.getetudbyclass(this.ns).subscribe(
           data => {
    
       this.etu=data; 
-      console.log('getetudbyclassssss : ',data)   
-          },
-          err => {
-          }
-        );
+      console.log('getetudbyclassssss : ',data)   ;
+          }) 
+        }
+    );
+       
      
  
     console.log(" this.id_niveaux : ", this.id_niveaux)
@@ -103,50 +113,7 @@ export class EtudiantsParClassComponent implements OnInit {
       }
     );
   }
-  downloadPdfpresenceSG(cm:any){
-    this.PdfgenerateService.getPdfpresence(cm.idEnregistrement,false).subscribe( (pdf:any)=>{
-      const blob = new Blob([pdf], { type: 'application/pdf' })
-      var fileURL = URL.createObjectURL(blob);
-      window.open(fileURL);
-   
-  })
-}
-downloadPdfpresenceDG(cm:any){
-    this.PdfgenerateService.getPdfpresence(cm.idEnregistrement,true).subscribe( (pdf:any)=>{
-    const blob = new Blob([pdf], { type: 'application/pdf' })
-    var fileURL = URL.createObjectURL(blob);
-    window.open(fileURL);
- 
-})
 
-}
-downloadPdfinscriptionDG(cm:any){
-  this.PdfgenerateService.getPdfinscription(cm.idEnregistrement,true).subscribe( (pdf:any)=>{
-  const blob = new Blob([pdf], { type: 'application/pdf' })
-  var fileURL = URL.createObjectURL(blob);
-  window.open(fileURL);
-
-})
-
-}
-downloadPdfinscriptionSG(cm:any){
-  this.PdfgenerateService.getPdfinscription(cm.idEnregistrement,false).subscribe( (pdf:any)=>{
-  const blob = new Blob([pdf], { type: 'application/pdf' })
-  var fileURL = URL.createObjectURL(blob);
-  window.open(fileURL);
-
-})
-
-}
-downloadPdfinformation(cm:any){
-  this.PdfgenerateService.getPdfinformation(cm.idEnregistrement).subscribe( (pdf:any)=>{
-  const blob = new Blob([pdf], { type: 'application/pdf' })
-  var fileURL = URL.createObjectURL(blob);
-  window.open(fileURL);
-
-})
-
-}
 
 do(){
   alert("ahhhh")

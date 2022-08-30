@@ -26,13 +26,20 @@ roleEtat=0;
 class = [
   { idNiveau: 0, Cycle: "",Specialite:"",Parcours:"",Niveau:"" },
 ];
+matiere={
+  "nomMatiere":"",
+  "description":"",
+  "enseignants":[{"id":0}],
+  "niveau":{"idNiveau":0},
+  "coefficient":0
+  }
 form:any;
 
 nomMatiere:any;
 description:any;
-enseignant:any;
+enseignant=[{id:null},];
 coefficient:any;
-niveau:any;
+niveau={idNiveau:null};
 
 
 enseignants=[
@@ -106,29 +113,22 @@ this.roleEtat=this.roleEtat+1;
 
   }
 
-getidenseignant(event:any){
-  let id = event.target.value
- console.log("id:",id)
-    this.enseignantService.getenseignant(id).subscribe(data=>{this.enseignant = data.body;
-    console.log("this.enseignant:",this.enseignant);
-  })}
- 
 
-  getidclass(event:any){
-    let id = event.target.value;
-    console.log("idclass :",id);
-    this.inscriservice.GETNiveaux(id).subscribe(data=>{this.niveau = data;
-    console.log("this.niveau : " ,this.niveau);
-  })}
-  
   
     saveMatiere(data:any) {
-      console.log("data22: ",data)
-  this.nomMatiere=data.nomMatiere;
-  this.description=data.description;
-  this.coefficient=data.coefficient;
-      this.matiereService.addmatiere(this.nomMatiere,this.description,this.enseignant,this.niveau,this.coefficient)
-   }
+  this.matiere={
+    "nomMatiere":data.nomMatiere,
+    "description":data.description,
+    "enseignants":[{"id":data.enseignant}],
+    "niveau":{"idNiveau":data.niveau},
+    "coefficient":data.coefficient,
+    }
+  console.log("matiere : ", this.matiere )
+      this.matiereService.addmatiere(this.matiere).subscribe(
+        data=> {
+          console.log("ajoutée :" , data)
+   })
+  }
   logout(){
     this.tokenStorage.signOut();
   }

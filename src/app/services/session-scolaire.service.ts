@@ -24,9 +24,7 @@ export class SessionScolaireService {
     }, httpOptions);
   }
 
-  getetudbyclass(niveaux:any,session:any): Observable<any> {
-      return this.http.post(GETETUDSS_API + 'getbyidns', {
-        idNiveaux:niveaux ,idSession:session,
-      }, httpOptions);
+  getetudbyclass(ns:any): Observable<any> {
+      return this.http.post(GETETUDSS_API + 'getbyidnss', ns , httpOptions);
 }
 }

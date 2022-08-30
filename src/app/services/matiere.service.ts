@@ -16,8 +16,8 @@ export class MatiereService {
   getallmatieres(): Observable<any> {
     return this.http.get(MATIERE_API + 'getallmatieres', httpOptions);
   }
-  addmatiere(nomMatiere:any,description:any,enseignant:any,niveau:any,coefficient:any): Observable<any> {
-    return this.http.post(MATIERE_API + 'addmatiere' ,{nomMatiere:nomMatiere,description:description,enseignant:enseignant,niveau:niveau,coefficient:coefficient},httpOptions);
+  addmatiere(matiere:any): Observable<any> {
+    return this.http.post(MATIERE_API + 'addmatiere' ,matiere,httpOptions);
   }
 
 }

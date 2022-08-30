@@ -198,9 +198,11 @@
                       name="enseignant"
                       formControlName="enseignant"
                      
-                     (change)="getidenseignant($event)"
+                     [(ngModel)]="enseignant" 
+
+                     
                     >
-                      <option *ngFor="let e of enseignants" value="{{e.id}}" >
+                      <option *ngFor="let e of enseignants" [ngValue]="e.id" >
                    {{e.id}} {{ "--" }} {{ e.prenom }} {{ " " }} {{ e.nom }}
                       </option>
                     </select>
@@ -213,10 +215,10 @@
                       class="form-control form-control-alternative"
                       name="niveau"
                       formControlName="niveau"
-                      (change)="getidclass($event)"
+                      
                     >
                       <option></option>
-                      <option *ngFor="let cm of class" value="{{cm.idNiveau}}">
+                      <option *ngFor="let cm of class" [ngValue]="cm.idNiveau">
                         {{ cm.Cycle }}-{{ cm.Specialite }}-{{ cm.Parcours }}-{{
                           cm.Niveau}}
                       </option>
