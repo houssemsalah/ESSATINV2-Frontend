@@ -3,6 +3,7 @@ import { SessionScolaireService } from '../services/session-scolaire.service';
 import { TokenStorageService } from '../services/token-storage.service';
 
 import { PdfgenerateService } from '../services/pdfgenerate.service';
+declare  var jQuery:  any;
 
 @Component({
   selector: 'app-ajout-note',
@@ -10,7 +11,7 @@ import { PdfgenerateService } from '../services/pdfgenerate.service';
   styleUrls: ['./ajout-note.component.css']
 })
 export class AjoutNoteComponent implements OnInit {
-
+  name = 'Angular';
  sessionunivr: any;
   sessionunivrchek:any;
   id_session: any;
@@ -22,10 +23,46 @@ export class AjoutNoteComponent implements OnInit {
   role:any;
   roleEtat=0;
 
+  id_niveaux: any ;
+  ns={
+    "idNiveaux":0,
+    "idSession":0
+  }
+  
 
   constructor(private tokenStorage: TokenStorageService ,private SessionScolaireService: SessionScolaireService,private PdfgenerateService :PdfgenerateService) { }
 
   ngOnInit(): void {
+
+
+    this.SessionScolaireService.getsessionuniv().subscribe(
+      data => {
+        this.sessionunivr = data;
+        this.sessionunivrchek=this.sessionunivr[this.sessionunivr.length-1];
+        this.id_session=this.sessionunivrchek.idSession
+        console.log('this.id_session : ',this.id_session) 
+        if (localStorage.getItem("idNiveaux")) {
+          console.log("idNiveau = " , localStorage.getItem("idNiveaux"))
+          
+          this.id_niveaux = JSON.parse(localStorage.getItem("idNiveaux")!)
+          
+        }
+
+        this.ns={
+          "idNiveaux":this.id_niveaux ,
+          "idSession":this.id_session
+        }
+        console.log("this.ns = ",this.ns)
+      this.SessionScolaireService.getetudbyclass(this.ns).subscribe(
+          data => {
+   
+      this.etu=data; 
+      console.log('getetudbyclassssss : ',data)   ;
+          }) 
+        }
+    );
+
+
     if (localStorage.length < 1) {
       window.location.replace('');
     }
@@ -55,23 +92,7 @@ this.roleEtat=this.roleEtat+1;
  
     this.nom = this.tokenStorage.getUsernom();
     this.prenom = this.tokenStorage.getUserprenom();
-    this.SessionScolaireService.getsessionuniv().subscribe(
-      data => {
-        this.sessionunivr = data;
-        this.sessionunivrchek=this.sessionunivr[this.sessionunivr.length-1];
-        this.id_session=this.sessionunivrchek.idSession
-        this.SessionScolaireService.getetudss(this.id_session).subscribe(
-          data => {
-console.log(data)      
-      this.etu=data; 
-          },
-          () => {
-          }
-        );
-      },
-      err => {
-      }
-    );
+   
    
 
     

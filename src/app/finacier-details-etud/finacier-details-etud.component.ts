@@ -79,13 +79,13 @@ export class FinacierDetailsEtudComponent implements OnInit {
     this.statusNeauMo="COMPLETE"
 
 
-    this.role = JSON.parse(localStorage.getItem("USER_Role")!)
+ /*    this.role = JSON.parse(localStorage.getItem("USER_Role")!)
     if (this.role.length === 1) {
       if (this.role != "ROLE_FINANCIER") {
         window.location.replace('404');
 
       }
-    }
+    } */
     if (this.role.length != 1) {
 
       for (var i in this.role) {

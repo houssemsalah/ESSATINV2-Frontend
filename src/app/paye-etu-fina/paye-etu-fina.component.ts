@@ -47,12 +47,12 @@ export class PayeEtuFinaComponent implements OnInit {
     this.prenom = this.tokenStorage.getUserprenom();
     this.role= JSON.parse(localStorage.getItem("USER_Role")!)
     console.log(this.role.length)
-    if(this.role.length===1){
+    /* if(this.role.length===1){
       if(this.role!="ROLE_FINANCIER"){
         window.location.replace('404');
       
               }
-    }
+    } */
     if(this.role.length!=1){
 
     for(var i in this.role){

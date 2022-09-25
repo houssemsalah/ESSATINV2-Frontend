@@ -1,44 +1,5 @@
 <body class="">
-	<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="Etu"> <img src="../assets/img/brand/logo.png" class="navbar-brand-img"
-					alt="...">
-			</a>
-			<div class="collapse navbar-collapse" id="sidenav-collapse-main">
-				<ul class="navbar-nav">
-					<li class="nav-item "><a class="nav-link " href="Etu"> <i class="ni ni-single-02 text-blue"></i>
-							Gestion Etudiant
-						</a></li>
-					<li class="nav-item active"><a class="nav-link" href="Insc"> <i
-								class="ni ni-circle-08 text-blue"></i>
-							Inscription
-						</a></li>
-
-
-				</ul>
-
-
-				<ul class="navbar-nav ">
-					<li class="nav-item"><a class="nav-link " href="#" href="enregistrement">
-							<i class="fas fa-graduation-cap text-blue"></i>Enregistrement
-						</a></li>
-				</ul>
-				<ul class="navbar-nav ">
-					<li class="nav-item "><a class="nav-link " href="fichier">
-							<i class="ni ni-book-bookmark text-blue"></i>
-
-							Fiche de presence
-						</a></li>
-				</ul>
-				<hr class="my-3">
-				<ul class="navbar-nav ">
-					<li class="nav-item"><a class="nav-link " (click)="logout()" href="#">
-							<i class="ni ni-user-run text-blue"></i> Se déconnecter
-						</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+	
 	<div class="main-content">
 		<!-- Navbar -->
 		<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
@@ -105,62 +66,73 @@
 						</div>
 						<div class="card-body">
 
-						
-									<form [formGroup]="firstFormGroup" name="form" (ngSubmit)="f.form.valid "
-										#f="ngForm" novalidate>
-										<ng-template matStepLabel>Donneé Personelle</ng-template>
-										<h6 class="heading-small text-muted mb-4">Données
-											Personelle</h6>
+							
+							  
+									<form [formGroup]="form"  (ngSubmit)="signup(form.value);  "
+										 novalidate>
+										
 										<div class="pl-lg-4">
+											<div class="row" style="display: flex; justify-content: center">
+												<div class="col-lg-4">
+												  <div
+													*ngIf="SuccessMessage"
+													class="alert alert-success alert-dismissible fade show"
+													role="alert"
+												  >
+													<strong>Compte</strong> ajoutée avec succée.
+													<button
+													  type="button"
+													  class="close"
+													  data-dismiss="alert"
+													  aria-label="Close"
+													>
+													  <span aria-hidden="true">&times;</span>
+													</button>
+												  </div>
+												</div>
+											  </div>
 											<div class="row">
 
 												<div class="col-lg-6">
 													<div class="form-group">
 														<label class="form-control-label">Identificateur</label> <select
-															class="form-control form-control-alternative" name="id"
-															[(ngModel)]="form.idTypeIdentificateur"
+															class="form-control form-control-alternative" name="typeIdentificateur"
+															[(ngModel)]="typeIdentificateur"
+															formControlName="typeIdentificateur"
 															[disabled]="test!=test1"
-															[ngModelOptions]="{standalone: true}" required>
+															 required
+															 (change)="typeIdentificateurrequired=false"
+															 >
 
 															<option *ngFor="let item of identificateur"
 																[value]="item.idTypeidentificateur">
 																{{item.typeIdentificateur}}</option>
 
 														</select>
+														<div *ngIf="typeIdentificateurrequired" class="text-danger">Un identificateur est requis!
+														</div>
 													</div>
 												</div>
 												<div class="col-lg-6">
 													<div class="form-group">
 														<label class="form-control-label">Num Identificateur</label>
-														<ng-template #content>
-
-															<div class="modal-body">
-																<div class="alert alert-warning" role="alert">
-																	Etudiant est deja inscrit
-																</div>
-															</div>
-
-														</ng-template>
-														<ng-template #content23>
-
-															<div class="modal-body">
-																<div class="alert alert-danger" role="alert">
-																	Etudiant maynajemsh yamel linscri </div>
-															</div>
-
-														</ng-template>
-														<input type="text" [(ngModel)]="form.ididentif"
-															[disabled]="test!=test1"
-															[disabled]="form.idTypeIdentificateur===null1" required
-															minlength="6" #password="ngModel"
-															(change)="getetu(content,content23)"
-															[ngModelOptions]="{standalone: true}"
+														
+														<input type="text" [(ngModel)]="numeroIdentificateur"
+														formControlName="numeroIdentificateur"
+															
+															[disabled]="typeIdentificateurrequired==true" 
+															minlength="6" 
+															(change)="numeroIdentificateurrequired=false"
+															
 															class="form-control form-control-alternative"
-															placeholder="Num Identificateur" name="numid" required>
+															placeholder="Num Identificateur" name="numeroIdentificateur" required>
+															<div *ngIf="numeroIdentificateurrequired" class="text-danger">Numéro d'identificateur est requis!
 													</div>
-													<div class="alert alert-danger" role="alert" *ngIf="ControleNumID">
-														Num Identificateur il doit depasse 8 numero
+													<div class="text-danger"  *ngIf="numeroIdentificateurinvalid">
+														Le numéro d'identificateur doit depasse 8 chiffres
 													</div>
+													</div>
+													
 
 												</div>
 											</div>
@@ -168,10 +140,14 @@
 												<div class="col-lg-6">
 													<div class="form-group">
 														<label class="form-control-label">Nom</label> <input type="text"
-															id="input-username" [disabled]="test!=test1"
+															 [disabled]="test!=test1"
 															class="form-control form-control-alternative"
-															placeholder="Nom" name="nom" [(ngModel)]="form.nom"
-															[ngModelOptions]="{standalone: true}" required>
+															placeholder="Nom" name="nom" [(ngModel)]="nom"
+															formControlName="nom"
+															(change)="nomrequired=false"
+															 required>
+															 <div *ngIf="nomrequired" class="text-danger">Un nom est requis!
+															</div>
 													</div>
 
 												</div>
@@ -180,8 +156,12 @@
 														<label class="form-control-label">Prénom</label> <input
 															type="text" id="input-email" [disabled]="test!=test1"
 															class="form-control form-control-alternative"
-															placeholder="Prénom" name="prenom" [(ngModel)]="form.prenom"
-															[ngModelOptions]="{standalone: true}" required>
+															placeholder="Prénom" name="prenom" [(ngModel)]="prenom"
+															formControlName="prenom"
+															(change)="prenomrequired=false"
+															 required>
+															 <div *ngIf="prenomrequired" class="text-danger">Un prénom est requis!
+															</div>
 													</div>
 												</div>
 											</div>
@@ -189,18 +169,37 @@
 												<div class="col-lg-6">
 													<div class="form-group">
 														<label class="form-control-label">Email</label> <input
-															type="mail" class="form-control form-control-alternative"
-															placeholder="Email" name="mail" [(ngModel)]="form.mail"
-															[ngModelOptions]="{standalone: true}" required>
-													</div>
+														
+															type="email" class="form-control form-control-alternative"
+															placeholder="Email" name="mail" [(ngModel)]="mail"  email="true"
+															formControlName="mail"
+															(change)="emailrequired=false"
+														 
+															 required>
+														     
+															 <div *ngIf="emailrequired" class="text-danger">Un email est requis!
+															</div>
+															<div *ngIf="emailinvalid" class="text-danger">Email non valid!
+															
+																
+															</div>
+															</div>
+													
+														
+														
+											
 												</div>
 												<div class="col-lg-6">
 													<div class="form-group">
 														<label class="form-control-label">Adresse</label> <input
 															type="text" class="form-control form-control-alternative"
-															[(ngModel)]="form.adresse"
-															[ngModelOptions]="{standalone: true}" placeholder="Adresse"
+															[(ngModel)]="adresse"
+															formControlName="adresse"
+															 placeholder="Adresse"
+															 (change)="adresserequired=false"
 															name="adress" required>
+															<div *ngIf="adresserequired" class="text-danger">Une adresse est requise!
+															</div>
 													</div>
 												</div>
 											</div>
@@ -209,9 +208,12 @@
 													<div class="form-group">
 														<label class="form-control-label">Téléphone</label> <input
 															type="text" class="form-control form-control-alternative"
-															[(ngModel)]="form.telephonne"
-															[ngModelOptions]="{standalone: true}"
-															placeholder="Téléphone" name="tele" required>
+															[(ngModel)]="tel"
+															formControlName="tel"
+															(change)="telrequired=false"
+															placeholder="Téléphone" name="tel" required>
+															<div *ngIf="telrequired" class="text-danger">Un numéro de télèphone est requis!
+															</div>
 													</div>
 												</div>
 												<div class="col-lg-6">
@@ -220,10 +222,13 @@
 
 														<label class="form-control-label">Date de naissance</label>
 														<input type="date" class="form-control form-control-alternative"
-															max="" [(ngModel)]="form.dateNaissance"
+															max="" [(ngModel)]="dateDeNaissance"
+															formControlName="dateDeNaissance"
 															[disabled]="test!=test1"
-															[ngModelOptions]="{standalone: true}"
-															placeholder="Date de naissance" name="dn" required>
+															(change)="dateDeNaissancerequired=false"
+															placeholder="Date de naissance" name="dateDeNaissance" required>
+															<div *ngIf="dateDeNaissancerequired" class="text-danger">Une date de naissance est requise!
+															</div>
 													</div>
 												</div>
 											</div>
@@ -231,22 +236,28 @@
 												<div class="col-lg-6">
 													<div class="form-group">
 														<label class="form-control-label">Lieu de naissance</label>
-														<input type="text" [(ngModel)]="form.lieuNaissance"
-															[ngModelOptions]="{standalone: true}"
+														<input type="text" [(ngModel)]="lieuDeNaissance"
+														formControlName="lieuDeNaissance"
+														(change)="lieuDeNaissancerequired=false"
 															[disabled]="test!=test1"
 															class="form-control form-control-alternative"
-															placeholder="Lieu de naissance" name="ln" required>
+															placeholder="Lieu de naissance" name="lieuDeNaissance" required>
+															<div *ngIf="lieuDeNaissancerequired" class="text-danger">Un lieu de naissance est requis!
+															</div>
 													</div>
 												</div>
 												<div class="col-lg-6">
 													<div class="form-group">
 														<label class="form-control-label">Sexe</label> <select
 															class="form-control form-control-alternative" name="sexe"
-															[(ngModel)]="form.sexe" [disabled]="test!=test1"
-															[ngModelOptions]="{standalone: true}" required>
+															[(ngModel)]="sexe" formControlName="sexe" [disabled]="test!=test1"
+															(change)="sexerequired=false"
+															 required>
 															<option value="Homme">Homme</option>
 															<option value="Femme">Femme</option>
 														</select>
+														<div *ngIf="sexerequired" class="text-danger">Un sexe est requis!
+														</div>
 													</div>
 												</div>
 											</div>
@@ -256,28 +267,60 @@
 													<div class="form-group">
 														<label class="form-control-label">Nationalité</label> <select
 															class="form-control form-control-alternative"
-															name="nationalite" [(ngModel)]="form.nationalite"
-															[ngModelOptions]="{standalone: true}"
+															name="nationalite" [(ngModel)]="nationalite" formControlName="nationalite"
+															(change)="nationaliterequired=false"
 															[disabled]="test!=test1" required>
-
+															
 															<option *ngFor="let cm of nationalite"
-																[value]="cm.id_Nationalite">{{cm.libelle}}</option>
+																[value]="cm.libelle">{{cm.libelle}}</option>
 
 														</select>
+														<div *ngIf="nationaliterequired" class="text-danger">Une nationalité est requise!
+														</div>
 													</div>
 												</div>
 												<div class="col-lg-6"><div class="form-group">
                                                     <label class="form-control-label">Role</label> <select
                                                         class="form-control form-control-alternative"
-                                                        name="nationalite" [(ngModel)]="form.nationalite"
-                                                        [ngModelOptions]="{standalone: true}"
+                                                        name="role" [(ngModel)]="role" formControlName="role"
+                                                        (change)="rolerequired=false"
                                                         [disabled]="test!=test1" required>
+													
 
-                                                        <option *ngFor="let cm of nationalite"
-                                                            [value]="cm.id_Nationalite">{{cm.libelle}}</option>
+                                                        <option *ngFor="let r of roles"
+                                                            [value]="r.role">{{r.role}}</option>
 
                                                     </select>
+													<div *ngIf="rolerequired" class="text-danger">Un role est requis!
+													</div>
                                                 </div></div>
+											</div>
+											<div class="row">
+												<div class="col-lg-6">
+													<div class="form-group">
+														<label class="form-control-label">Nom d'utilisateur</label> <input type="adresse"
+															 [disabled]="test!=test1"
+															class="form-control form-control-alternative"
+															 name="login" [(ngModel)]="login"
+															formControlName="login"
+															 required>
+															 <div *ngIf="loginrequired" class="text-danger">Un Nom d'utilisateur est requis!
+															</div>
+													</div>
+
+												</div>
+												<div class="col-lg-6">
+													<div class="form-group">
+														<label class="form-control-label">Mot de passe</label> <input
+															 [disabled]="test!=test1"
+															class="form-control form-control-alternative"
+															 name="password" [(ngModel)]="password"
+															formControlName="password"
+															 required>
+															 <div *ngIf="passwordrequired" class="text-danger">Un mot de passe est requis!
+															</div>
+													</div>
+												</div>
 											</div>
 										</div>
 										<div class="row">
@@ -299,18 +342,7 @@
 				</div>
 			</div>
 			<!-- Footer -->
-			<footer class="footer">
-				<div class="row align-items-center justify-content-xl-between">
-					<div class="col-xl-6">
-						<div class="copyright text-center text-xl-left text-muted">
-							© 2019 <a class="font-weight-bold ml-1" href="http://www.essat-gabes.com/"
-								target="_blank">ESSAT
-								GABES</a>
-						</div>
-					</div>
-
-				</div>
-			</footer>
+		
 		</div>
 	</div>
 	<!--   Core   -->

@@ -22,12 +22,12 @@ export class FeuilleDeEmergComponent implements OnInit {
   ngOnInit(): void {
     localStorage.removeItem("Etud")
     this.role= JSON.parse(localStorage.getItem("USER_Role")!)
-    if(this.role.length===1){
+   /*  if(this.role.length===1){
       if(this.role!="ROLE_EXAMEN"){
         window.location.replace('404');
       
               }
-    }
+    } */
     if(this.role.length!=1){
 
     for(var i in this.role){

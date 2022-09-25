@@ -5,7 +5,9 @@ import { Observable } from 'rxjs';
 const MATIERE_API = 'http://localhost:8080/api/matiere/';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' ,}),
+  
+  
 };
 
 @Injectable({
@@ -20,4 +22,13 @@ export class MatiereService {
     return this.http.post(MATIERE_API + 'addmatiere' ,matiere,httpOptions);
   }
 
+getmatierebyid(idMatiere:any): Observable<any> {
+    return this.http.post(MATIERE_API + 'getbyidm' ,idMatiere,httpOptions);
+  }
+  getmatierebyniveaux(niveaux:any): Observable<any> {
+    return this.http.post(MATIERE_API + 'getmatieresbyniveau' ,niveaux,httpOptions);
+  }
+  supprimermatiere(id:any): Observable<any> {
+    return this.http.post(MATIERE_API + 'supprimermatiere' ,{"id":id} ,httpOptions);
+  }
 }

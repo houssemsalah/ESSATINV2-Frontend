@@ -1,79 +1,7 @@
-<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="Etu"> <img src="../assets/img/brand/logo.png" class="navbar-brand-img" alt="...">
-        </a>
-        <div class="collapse navbar-collapse" id="sidenav-collapse-main">
-            <ul class="navbar-nav">
-                <li class="nav-item active "><a class="nav-link " href="Etu"> <i class="ni ni-single-02 text-blue"></i>
-                        Gestion Etudiant
-                    </a></li>
-                <li class="nav-item "><a class="nav-link" href="Insc"> <i class="ni ni-circle-08 text-blue"></i>
-                        Inscription
-                    </a></li>
 
-
-            </ul>
-            
-            
-            <ul class="navbar-nav ">
-                <li class="nav-item"><a class="nav-link "    href="enregistrement" >
-                    <i
-                    class="fas fa-graduation-cap text-blue"></i>Enregistrement
-                    </a></li>
-            </ul>
-			<ul class="navbar-nav ">
-                <li class="nav-item"><a class="nav-link " href="fichier"  >
-                    <i class="ni ni-book-bookmark text-blue"></i>
-
-Fiche de presence
-                    </a></li>
-            </ul>
-
-            <hr class="my-3">
-            <ul class="navbar-nav ">
-                <li class="nav-item"><a class="nav-link " (click)="logout()" href="#" >
-                        <i  class="ni ni-user-run text-blue"></i> Se déconnecter
-                    </a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
 	<div class="main-content">
 		<!-- Navbar -->
-		<nav class="navbar navbar-top navbar-expand-md navbar-dark"
-			id="navbar-main">
-			<div class="container-fluid">
-				<!-- Brand -->
-				<a></a>
-
-				<!-- User -->
-				<ul class="navbar-nav align-items-center d-none d-md-flex">
-					<li class="nav-item dropdown"><a class="nav-link pr-0"
-						href="#"  data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false">
-						<div class="media align-items-center">
-							<span class="avatar avatar-sm rounded-circle"> <i class="fas fa-user"></i>
-							</span>
-							<div class="media-body ml-2 d-none d-lg-block">
-								
-								<div class="dropdown" style="float:right;">
-									<span >
-									{{nom}}	{{prenom}}  </span>&nbsp; &nbsp;
-
-									<div class="dropdown-content" >
-										<a class="dropdown-item"
-															
-										target="self" *ngFor="let cm of role" (click)="change(cm)" > {{cm}}</a>
-										
-									</div>
-								</div>
-							</div>
-						</div>
-					</a>
-						
-				</ul>
-			</div>
-		</nav>
+		
 		<!-- End Navbar -->
 		<!-- Header -->
 
@@ -123,48 +51,299 @@ Fiche de presence
                                    
                                 </div>
                                 <div class="col-lg-3"></div>
-                                <div class="col-lg-3"> <a href="creerCompte">Créer un nouveau compte</a></div>
+                                <div class="col-lg-3"> <a href="dashbord/creerCompte">Créer un nouveau compte</a></div>
 							</div>
 							<br>  
 							<div class="  table-responsive" style="min-height: 300px;padding-left: 50px;padding-right: 50px;">
 							
                                 
-								<table class="table align-items-center table-flush"
+								<table style="text-align: center;" class="table align-items-center table-flush"
 									id="tableetudiant" >
 									<thead class="thead-light">
 										<tr>
-											<th scope="col">Nom</th>
 											<th scope="col">Prénom</th>
+											<th scope="col">Nom</th>
 											<th scope="col">Role</th>
-											
+											<th>Action</th>
 											
 										</tr>
 									</thead>
-									<tbody>
+									<tbody  >
 									
-										<tr *ngFor="let cm of etu | filter:searchText">
-											<td scope="row">
-												<div class="media align-items-center ">
-													<div class="media-body ">
-														<h5 class="mb-0 text-sm-left  "> hhhhhhhh </h5>
-													</div>
-												</div>
+										<tr *ngFor="let c of comptes | filter:searchText" >
+											<td scope="row" >
+												
+													
+														<h5 class="mb-0 text-md  "> {{c.idPersonne.prenom}} </h5>
+													
+												
 											</td>
-											<td><h5 class="mb-0 text-md">jjjjjjjj</h5></td>
-											<td ><div class="media align-items-center" >
-												<span class="mb-0 text-md" >
+											<td scope="row"><h5 class="mb-0 text-md">{{c.idPersonne.nom}}</h5></td>
+											<td scope="row"><div *ngFor="let r of c.roles">
+												<span class="mb-0 text-md"  >
+													{{r.role}} 
 													</span>
 											</div>
 												</td>
 											
-											
-											
+											<td scope="row" style="display: flex;justify-content: space-around;">
+												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+												<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+											  </svg>
+											  
+											  <svg (click)="openModallg(content8) ; pushCompte(c)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+												<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+												<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+											  </svg>
+											</td>
 										</tr>
 									
 									</tbody>
 								</table>
 							</div>
+<ng-template #content8 let-modal>
+									<div class="modal-body">
 
+										<form name="form" (ngSubmit)="f.form.valid && onSubmit(content7)" #f="ngForm" novalidate>
+											<h6 class="heading-small text-muted mb-4">Données
+												Personelles</h6>
+											<div class="pl-lg-4">
+												<div class="row">
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Login</label> <input
+																class="form-control form-control-alternative" 
+																type="text"  name="username"
+																[(ngModel)]="form.login" required #nom="ngModel"
+																name="login" placeholder="login" />
+														</div>
+														<div class="alert alert-danger" role="alert" *ngIf="f.submitted && nom.invalid">
+															Login is required!
+														</div>
+													</div>
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Password</label> <input
+																class="form-control form-control-alternative" 
+																[(ngModel)]="form.Password" required #prenom="ngModel"
+																name="Password" placeholder="Password" type="text"
+																value="">
+														</div>
+														<div class="alert alert-danger" role="alert" *ngIf="f.submitted && nom.invalid">
+															password is required!
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Nom</label> <input
+																class="form-control form-control-alternative" 
+																type="text"  name="username"
+																[(ngModel)]="form.nom" required #nom="ngModel"
+																name="nom" placeholder="Nom" />
+														</div>
+														<div class="alert alert-danger" role="alert" *ngIf="f.submitted && nom.invalid">
+															nom is required!
+														</div>
+													</div>
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Prénom</label> <input
+																class="form-control form-control-alternative" 
+																[(ngModel)]="form.prenom" required #prenom="ngModel"
+																name="prenom" placeholder="Prénom" type="text"
+																value="">
+														</div>
+														<div class="alert alert-danger" role="alert" *ngIf="f.submitted && prenom.invalid">
+															prenom is required!
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Email</label> <input
+																class="form-control form-control-alternative" name="mail"
+																[(ngModel)]="form.email" required #email="ngModel"
+				
+																placeholder="Email" type="text" >
+														</div>
+														<div class="alert alert-danger" role="alert" *ngIf="f.submitted && email.invalid">
+															email is required!
+														</div>
+													</div>
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Adresse</label> <input
+																class="form-control form-control-alternative" name="adresse"
+																[(ngModel)]="form.adresse" required #adresse="ngModel"
+																placeholder="Adresse" type="text">
+														</div>
+														<div class="alert alert-danger" role="alert" *ngIf="f.submitted && adresse.invalid">
+															Adresse is required!
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Téléphone</label> <input
+																class="form-control form-control-alternative" name="tele"
+																[(ngModel)]="form.tel" required #tel="ngModel" minlength="8"
+																placeholder="Téléphone" type="text">
+														</div>
+														<div class="alert alert-danger" role="alert" *ngIf="f.submitted && tel.invalid">
+															Téléphone is required!
+														</div>
+													</div>
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Date de naissance</label>
+															<input class="form-control form-control-alternative" name="dn"
+															[(ngModel)]="form.dn" required #dn="ngModel" 
+				
+																placeholder="Date de naissance" type="date"
+																value="">
+														</div>
+														<div class="alert alert-danger" role="alert" *ngIf="f.submitted && dn.invalid">
+															Date de naissance is required!
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Lieu de naissance</label>
+															<input class="form-control form-control-alternative" name="ln"
+																placeholder="Lieu de naissance" type="text"
+																[(ngModel)]="form.ln" required #ln="ngModel">
+														</div>
+														<div class="alert alert-danger" role="alert" *ngIf="f.submitted && ln.invalid">
+															Lieu de naissance is required!
+														</div>
+													</div>
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Identificateur</label> <select
+																class="form-control form-control-alternative" name="id"
+																[(ngModel)]="form.identificateur" required >
+				
+															
+																<option *ngFor="let item of identificateur"
+																[value]="item.idTypeidentificateur">
+																{{item.typeIdentificateur}}</option>
+						
+				
+															</select>
+														</div>
+														<div class="alert alert-danger" role="alert" *ngIf="f.submitted && identificateur.invalid">
+															Identificateur is required!
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Num Identificateur</label>
+															<input class="form-control form-control-alternative" name="numid"
+															[(ngModel)]="form.numid" required #numid="ngModel"
+																placeholder="Num Identificateur" type="text"
+																>
+														</div>
+														<div class="alert alert-danger" role="alert" *ngIf="f.submitted && numid.invalid">
+															Num Identificateur is required!
+														</div>
+													</div>
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Sexe</label> <select
+																class="form-control form-control-alternative" name="sexe"
+																[(ngModel)]="form.sexe" required #sexe="ngModel"
+																
+																>
+				
+																
+																<option value="Homme">Homme</option>
+																<option value="Femme">Femme</option>
+				
+															</select>
+														</div>
+														<div class="alert alert-danger" role="alert" *ngIf="f.submitted && sexe.invalid">
+															Sexe is required!
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label class="form-control-label">Nationalité</label> <select
+																class="form-control form-control-alternative" name="nationalite"
+																[(ngModel)]="form.nationalite" required 
+																>
+				
+																<option *ngFor="let cm of nationalite"
+																[value]="cm.id_Nationalite">{{cm.libelle}}</option>
+				
+															</select>
+														</div>
+														
+													</div>
+													<div class="col-lg-6"  >
+														<div class="form-group"  >
+															<label  class="form-control-label">Roles</label>
+																<span class="row" *ngFor="let rr of roless;let i=index;"  style="display:flex ; justify-content: space-between; " >
+																	<div ></div>
+																	<div class="  alert alert-info alert-dismissible"  style="display: flex; flex-direction: row;flex-wrap: wrap; justify-content: space-between;height: 5px;align-content:space-around ;padding-top: 20px;">
+																		
+																		<h6 >Role {{i+1}} : {{rr.role}} </h6>
+																		<svg (click)="supprimerRole(rr.id,rr.role)" style="margin-left: 20px;margin-right: -50px;"  type="button" class="close " data-dismiss="alert" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+																			<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+																		  </svg>
+																		  
+																	  </div>
+																	  <div ></div>
+																
+															</span>
+															
+														</div>
+														
+													</div>
+													 <div class="col-lg-6"  >
+														<div class="form-group">
+															<label class="form-control-label">Ajouter un role</label> <select
+																class="form-control form-control-alternative" name="role"
+																[(ngModel)]="form.role" required 
+																>
+				
+																<option *ngFor="let r of roles"
+																[value]="r.role">{{r.role}}</option>
+				
+															</select>
+														</div>
+														
+													</div>
+													
+												</div> 
+												<ng-template #content7  style="min-height: 300px;width: 500px;" let-modal>
+													<div class="modal-body">
+				
+														<div class="alert alert-success" role="alert">
+															Compte Modifier avec succée
+														  </div>
+														</div>
+				
+												</ng-template>
+												<div class="row">
+													<div class="col-sm-2"><button class="btn btn-form btn-success"   type="submit">Enregistrer</button>
+													</div>
+												  </div>
+				
+											</div>
+										</form>
+										</div>
+
+								</ng-template>
 						</div>
 					</div>
 				</div>

@@ -26,7 +26,7 @@ class = [
   constructor(private tokenStorage: TokenStorageService,private PdfgenerateService: PdfgenerateService, private inscriservice: InscriService,private modalService: NgbModal,private modifierservice: ModifierService) { }
 
   ngOnInit(): void {
-    localStorage.removeItem("Etud")
+  
     this.role= JSON.parse(localStorage.getItem("USER_Role")!)
     if(this.role.length===1){
       if(this.role!="ROLE_SCOLARITE"){

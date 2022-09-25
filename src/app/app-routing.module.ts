@@ -1,3 +1,4 @@
+import { ModifierMatiereComponent } from './modifier-matiere/modifier-matiere.component';
 import { DashbordComponent } from './dashbord/dashbord.component';
 import { CreerCompteComponent } from './creer-compte/creer-compte.component';
 import { ComptesComponent } from './comptes/comptes.component';
@@ -29,32 +30,40 @@ import { PayeEtuFinaComponent } from './paye-etu-fina/paye-etu-fina.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'Etu', component: EtudiantComponent},
+
+
+
+  {path: 'dashbord', component: DashbordComponent,children: [
+    {path: 'listeDesClasses', component: ListeDesClassesComponent},
+ {path: 'matieresParClass', component: ListeDesMatieresComponent},
+ {path: 'ajoutMatiere', component: AjoutMatiereComponent},
+ {path: 'modifierMatiere', component: ModifierMatiereComponent},
+ {path: 'ajoutNote', component: AjoutNoteComponent},
+ {path: 'comptes', component: ComptesComponent},
+ {path: 'creerCompte', component: CreerCompteComponent},
+    {path: 'etudiantsParClass', component: EtudiantsParClassComponent},
+    {path: 'classes', component: HomeExamComponent},
+    {path: 'feuilledenote', component: FeuilleDeNotesComponent},
+    {path: 'feuilledeemerg', component: FeuilleDeEmergComponent},
+    {path: 'FinDetEt', component: FinacierDetailsEtudComponent},
+    {path: 'PayerEtu', component: PayeEtuFinaComponent},
+      {path: 'Etu', component: EtudiantComponent},
   {path: 'mdpoblier', component: MdpoblierComponent},
   {path: 'Insc', component: InscriptionComponent},
     {path: 'detailleEtud', component: DetailleEtudianteComponent},
   {path: 'enregistrement', component: EnregistrementComponent},
-  {path: 'fichier', component: FicherComponent},
- {path: 'etudiantsParClass', component: EtudiantsParClassComponent},
-  {path: 'homeEx', component: HomeExamComponent},
-  {path: 'feuilledenote', component: FeuilleDeNotesComponent},
-  {path: 'feuilledeemerg', component: FeuilleDeEmergComponent},
-  {path: 'FinDetEt', component: FinacierDetailsEtudComponent},
-  {path: 'PayerEtu', component: PayeEtuFinaComponent},
-  {path: 'dashbord', component: DashbordComponent},
+    {path: 'etudiantsParClass', component: EtudiantsParClassComponent},
+    {path: 'listeDesClasses', component: ListeDesClassesComponent},
+    {path: 'fichier', component: FicherComponent},
+    {path: 'homeFina', component: HomeFinancierComponent},]},
   {path: '404', component: NotFoundComponent},
 
 
 
-  {path: 'homeFina', component: HomeFinancierComponent},
+  
 
 
-{path: 'listeDesClasses', component: ListeDesClassesComponent},
- {path: 'matieresParClass', component: ListeDesMatieresComponent},
- {path: 'ajoutMatiere', component: AjoutMatiereComponent},
- {path: 'ajoutNote', component: AjoutNoteComponent},
- {path: 'comptes', component: ComptesComponent},
- {path: 'creerCompte', component: CreerCompteComponent},
+
 
 
 

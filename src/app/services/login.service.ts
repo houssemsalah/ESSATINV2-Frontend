@@ -20,4 +20,9 @@ export class LoginService {
       password: credentials.password
     }, httpOptions);
   }
+
+  signup(compte:any): Observable<any> {
+    return this.http.post(AUTH_API + 'signup',compte, httpOptions);
+  }
+
 }

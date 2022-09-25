@@ -65,6 +65,9 @@ export class InscriService {
       idparcours: id,
     }, httpOptions);
   }
+  GETNiveauById(niveau:any): Observable<any> {
+    return this.http.post(GETniveaux_API + 'getbyidniveau',niveau, httpOptions);
+  }
   GetallNiveaux(): Observable<any> {
     return this.http.get(GETniveaux_API + 'getall',httpOptions );
 

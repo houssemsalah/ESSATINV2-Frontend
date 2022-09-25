@@ -10,11 +10,12 @@ import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { PdfgenerateService } from '../services/pdfgenerate.service';
 import { FormGroup, FormControl } from '@angular/forms';
 @Component({
-  selector: 'app-ajout-matiere',
-  templateUrl: './ajout-matiere.component.html',
-  styleUrls: ['./ajout-matiere.component.css']
+  selector: 'app-modifier-matiere',
+  templateUrl: './modifier-matiere.component.html',
+  styleUrls: ['./modifier-matiere.component.css']
 })
-export class AjoutMatiereComponent implements OnInit {
+export class ModifierMatiereComponent implements OnInit {
+
   SuccessMessage: boolean = false;
 nom:any;
 prenom:any;
@@ -26,6 +27,7 @@ roleEtat=0;
 class = [
   { idNiveau: 0, Cycle: "",Specialite:"",Parcours:"",Niveau:"" },
 ];
+
 matiere={
   "nomMatiere":"",
   "description":"",
@@ -40,7 +42,9 @@ description:any;
 enseignant=[{id:null},];
 coefficient:any;
 niveau={idNiveau:null};
-
+idMatiere={
+  "id":0
+  }
 
 enseignants=[
   {id:null ,prenom:"",nom:""},
@@ -48,6 +52,20 @@ enseignants=[
   constructor(private tokenStorage: TokenStorageService, private inscriservice: InscriService,private modalService: NgbModal,private modifierservice: ModifierService,private matiereService: MatiereService,private enseignantService: EnseignantService ) { }
   ngOnInit(): void {
 
+    if (localStorage.getItem("idMatiere")) {
+      console.log("idMatiere = " , JSON.parse(localStorage.getItem("idMatiere")!))
+      
+      this.idMatiere ={
+        "id": JSON.parse(localStorage.getItem("idMatiere")!)
+      }
+      console.log("this.idMatiere = " , this.idMatiere)
+   
+    this.matiereService.getmatierebyid(this.idMatiere).subscribe(data=> {
+      console.log('getMatiere by id : ' , data)
+    }
+    )
+ }
+    
     this.enseignantService.getallenseignant().subscribe(data=>{
       for(const i in data){
         this.enseignants.push({id:data[i].id,  prenom: data[i].personne.prenom , nom:data[i].personne.nom});

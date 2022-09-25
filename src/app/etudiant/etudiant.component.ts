@@ -29,7 +29,10 @@ export class EtudiantComponent implements OnInit {
     if (localStorage.length < 1) {
       window.location.replace('');
     }
-    localStorage.removeItem("Etud")
+    localStorage.removeItem("idMatiere")
+    localStorage.removeItem("idNiveaux")
+    localStorage.removeItem("idNiveau")
+   
     this.role= JSON.parse(localStorage.getItem("USER_Role")!)
     if(this.role.length===1){
       if(this.role!="ROLE_SCOLARITE"){
@@ -132,8 +135,9 @@ downloadPdfinformation(cm:any){
 
 }
 pushEtu(cm:any){
+
   localStorage.setItem("Etud",JSON.stringify(cm))
-  window.location.replace("detailleEtud")
+  window.location.replace("dashbord/detailleEtud")
 }
 do(){
   alert("ahhhh")

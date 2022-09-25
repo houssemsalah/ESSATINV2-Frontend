@@ -27,6 +27,8 @@ class = [
 
   ngOnInit(): void {
     localStorage.removeItem("Etud")
+    localStorage.removeItem("idMatiere")
+  
     this.role= JSON.parse(localStorage.getItem("USER_Role")!)
     if(this.role.length===1){
       if(this.role!="ROLE_SCOLARITE"){
@@ -62,8 +64,13 @@ this.roleEtat=this.roleEtat+1;
   }
   pushniveau(idNiveau:any){
     localStorage.setItem("idNiveau",JSON.stringify(idNiveau))
-    window.location.replace("etudiantsParClass")
+    window.location.replace("dashbord/etudiantsParClass")
   }
+  pushniveaux(idNiveaux:any){
+    localStorage.setItem("idNiveaux",JSON.stringify(idNiveaux))
+    window.location.replace("dashbord/matieresParClass")
+  }
+
   fichedepresnce(cm:any){
     console.log(cm.idNiveau)
     this.PdfgenerateService.getPdffichedepresnce(cm.idNiveau).subscribe(

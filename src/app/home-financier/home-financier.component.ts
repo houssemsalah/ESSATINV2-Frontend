@@ -30,12 +30,12 @@ roleEtat=0;
     }
     this.role= JSON.parse(localStorage.getItem("USER_Role")!)
     console.log(this.role.length)
-    if(this.role.length===1){
+  /*   if(this.role.length===1){
       if(this.role!="ROLE_FINANCIER"){
         window.location.replace('404');
       
               }
-    }
+    } */
     if(this.role.length!=1){
 
     for(var i in this.role){
@@ -115,23 +115,23 @@ this.roleEtat=this.roleEtat+1;
   }
   getEtu(cm:any){
     localStorage.setItem("Etud",JSON.stringify(cm))
-    window.location.replace('FinDetEt');
+    window.location.replace('dashbord/FinDetEt');
   }
   getEtu2(cm:any){
     localStorage.setItem("Etud",JSON.stringify(cm))
-  window.location.replace('PayerEtu');
+  window.location.replace('dashbord/PayerEtu');
 }
   change(cm:any){
     if(cm=="ROLE_FINANCIER"){
-      window.location.replace('homeFina');
+      window.location.replace('dashbord/homeFina');
   
     }
     if(cm=="ROLE_SCOLARITE"){
-      window.location.replace('Etu');
+      window.location.replace('dashbord/Etu');
   
     }
     if(cm=="ROLE_EXAMEN"){
-      window.location.replace('homeEx');
+      window.location.replace('dashbord/homeEx');
   
     }
   } 

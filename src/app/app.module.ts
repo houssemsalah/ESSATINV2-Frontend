@@ -48,11 +48,13 @@ import { ComptesComponent } from './comptes/comptes.component';
 import { CreerCompteComponent } from './creer-compte/creer-compte.component';
 import { DashbordComponent } from './dashbord/dashbord.component';
 import { FooterComponent } from './footer/footer.component';
+import { ModifierMatiereComponent } from './modifier-matiere/modifier-matiere.component';
 
 
 
 @NgModule({
   declarations: [
+    
     AppComponent,
     LoginComponent,
     EtudiantComponent,
@@ -77,10 +79,12 @@ import { FooterComponent } from './footer/footer.component';
     ComptesComponent,
     CreerCompteComponent,
     DashbordComponent,
-    FooterComponent
+    FooterComponent,
+    ModifierMatiereComponent
     
   ],  
   imports: [
+
     BrowserModule,
     [NotifierModule],
     AppRoutingModule,
@@ -112,6 +116,7 @@ import { FooterComponent } from './footer/footer.component';
     MatSelectModule,
     MatMenuModule,
     MatSnackBarModule,
+    
     ChecklistModule,
     ToastrModule.forRoot({
       timeOut: 10000,

@@ -28,12 +28,12 @@ roleEtat=0;
   ngOnInit(): void {
     localStorage.removeItem("Etud")
     this.role= JSON.parse(localStorage.getItem("USER_Role")!)
-    if(this.role.length===1){
+  /*   if(this.role.length===1){
       if(this.role!="ROLE_EXAMEN"){
         window.location.replace('404');
       
               }
-    }
+    } */
     if(this.role.length!=1){
 
     for(var i in this.role){
@@ -87,6 +87,15 @@ console.log(data)
         this.etu=data;
       }
     );
+  }
+
+  pushniveau(idNiveau:any){
+    localStorage.setItem("idNiveau",JSON.stringify(idNiveau))
+    window.location.replace("dashbord/etudiantsParClass")
+  }
+  pushniveaux(idNiveaux:any){
+    localStorage.setItem("idNiveaux",JSON.stringify(idNiveaux))
+    window.location.replace("dashbord/matieresParClass")
   }
   change(cm:any){
     if(cm=="ROLE_FINANCIER"){
