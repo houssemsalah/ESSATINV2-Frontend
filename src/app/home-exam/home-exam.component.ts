@@ -34,20 +34,24 @@ roleEtat=0;
       
               }
     } */
-    if(this.role.length!=1){
 
+    console.log(this.role)
+    if(this.role.length!=1){
+/* 
     for(var i in this.role){
       if(this.role[i]!="ROLE_EXAMEN"){
 this.roleEtat=this.roleEtat+1;       
       }
   }
   if (localStorage.length < 1) {
+   
     window.location.replace('404');
   }
   if(this.roleEtat===this.role.length){
 
     window.location.replace('404');
-  }}
+  }  */
+}
     this.class.splice(0)
     this.nom = this.tokenStorage.getUsernom();
     this.prenom = this.tokenStorage.getUserprenom();

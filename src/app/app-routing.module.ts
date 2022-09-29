@@ -1,3 +1,4 @@
+import { NotesComponent } from './notes/notes.component';
 import { ModifierMatiereComponent } from './modifier-matiere/modifier-matiere.component';
 import { DashbordComponent } from './dashbord/dashbord.component';
 import { CreerCompteComponent } from './creer-compte/creer-compte.component';
@@ -39,6 +40,7 @@ const routes: Routes = [
  {path: 'ajoutMatiere', component: AjoutMatiereComponent},
  {path: 'modifierMatiere', component: ModifierMatiereComponent},
  {path: 'ajoutNote', component: AjoutNoteComponent},
+ {path: 'notes', component: NotesComponent},
  {path: 'comptes', component: ComptesComponent},
  {path: 'creerCompte', component: CreerCompteComponent},
     {path: 'etudiantsParClass', component: EtudiantsParClassComponent},

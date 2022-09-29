@@ -105,9 +105,9 @@ niveaux={
       
               }
     }
-    if(this.role.length!=1){
+/*    if(this.role.length!=1){
 
-    for(var i in this.role){
+     for(var i in this.role){
       if(this.role[i]!="ROLE_SCOLARITE"){
 this.roleEtat=this.roleEtat+1;       
       }
@@ -118,7 +118,7 @@ this.roleEtat=this.roleEtat+1;
   if(this.roleEtat===this.role.length){
 
     window.location.replace('404');
-  }}
+  }} */
     this.class.splice(0)
 
     this.nom = this.tokenStorage.getUsernom();

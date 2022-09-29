@@ -1,32 +1,30 @@
-import { MatiereService } from './../services/matiere.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { SessionScolaireService } from '../services/session-scolaire.service';
 import { TokenStorageService } from '../services/token-storage.service';
 
 import { PdfgenerateService } from '../services/pdfgenerate.service';
 declare  var jQuery:  any;
+import {  AfterViewInit } from '@angular/core';
+
+import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
+import { Observable, merge } from 'rxjs';
+
+
 
 @Component({
-  selector: 'app-ajout-note',
-  templateUrl: './ajout-note.component.html',
-  styleUrls: ['./ajout-note.component.css']
+  selector: 'app-notes',
+  templateUrl: './notes.component.html',
+  styleUrls: ['./notes.component.css']
 })
-export class AjoutNoteComponent implements OnInit {
-  
-  check1=true;
-  check2=false;
-  check3=false;
-  check4=false;
-  check5=false;
-
+export class NotesComponent implements OnInit {
   name = 'Angular';
  sessionunivr: any;
   sessionunivrchek:any;
   id_session: any;
   etu: any;
   searchText: any;
-
+  nom:any;
+  prenom:any;
   long:number=0;
   role:any;
   roleEtat=0;
@@ -36,39 +34,9 @@ export class AjoutNoteComponent implements OnInit {
     "idNiveaux":0,
     "idSession":0
   }
-  nom:any;
-  prenom:any;
-  ds:any;
-  examen:any;
-  tp:any;
-  orale:any;
-  controle:any;
-etudiant:any;
-  typeNote = 2;
- 
-  enseignants=[
-    {id:null ,prenom:"",nom:""},
-  ];
+  show = true;
 
-
-  notes=[
-    {
-       
-      note: -1,
-      matiere: {
-          idMatiere: -1
-                  },
-      etudiant: {
-          idEtudiant:-1
-      },
-      typeDeNote: {
-          "id": -1
-          
-      }
-  },];
-
-
-  constructor(private tokenStorage: TokenStorageService ,private SessionScolaireService: SessionScolaireService,private PdfgenerateService :PdfgenerateService,private matiereService : MatiereService) { }
+  constructor(private tokenStorage: TokenStorageService ,private SessionScolaireService: SessionScolaireService,private PdfgenerateService :PdfgenerateService) { }
 
   ngOnInit(): void {
 
@@ -95,6 +63,9 @@ etudiant:any;
           data => {
    
       this.etu=data; 
+      
+
+      
       console.log('getetudbyclassssss : ',data)   ;
           }) 
         }
@@ -136,94 +107,6 @@ this.roleEtat=this.roleEtat+1;
     
 
   }
-
-  
-  form = new FormGroup({
-    prenom: new FormControl(),
-    nom: new FormControl(),
-    ds: new FormControl(),
-    etudiant: new FormControl(),
-    examen: new FormControl(),
-    tp: new FormControl(),
-    orale: new FormControl(),
-    controle: new FormControl()
-  })
-
-  onlyOneValue(e:any)
-  {
-    if (e.target.id == "check1id") {
-        this.check1= true;
-        this.check2 = false;
-        this.check3 = false;
-        this.check4 = false;
-        this.check5 = false;
-        this.typeNote=2;
-      }
-   else  if (e.target.id == "check2id") {
-        this.check1= false;
-        this.check2 = true;
-        this.check3 = false;
-        this.check4 = false;
-        this.check5 = false;
-        this.typeNote=1;
-      }
-      else  if (e.target.id == "check3id") {
-        this.check1= false;
-        this.check2 = false;
-        this.check3 = true;
-        this.check4 = false;
-        this.check5 = false;
-        this.typeNote=3;
-      }
-      
-      else  if (e.target.id == "check4id") {
-        this.check1= false;
-        this.check2 = false;
-        this.check3 = false;
-        this.check4 = true;
-        this.check5 = false;
-        this.typeNote=5;
-      }
-      else  if (e.target.id == "check5id") {
-        this.check1= false;
-        this.check2 = false;
-        this.check3 = false;
-        this.check4 = false;
-        this.check5 = true;
-        this.typeNote=4;
-      }
-  }
-
-  setNotes(event:any,i:any) {
-  
-  console.log("event : ",event.target.value," i : ",i)
-     
-    this.notes[i]={
-      
-      note: Number(event.target.value)
-      ,
-      matiere: {
-          idMatiere: JSON.parse(localStorage.getItem("MatiereNote")!).idMatiere
-                  },
-      etudiant: {
-          idEtudiant: this.etu[i].idInscription.idEtudiant.idEtudiant
-      },
-      typeDeNote: {
-          "id": this.typeNote
-          
-      }
-  };
-  
-console.log("notes : ", this.notes);
-  
-  }
-
- saveNotes(){
-  this.matiereService.addnotes(this.notes).subscribe((notes:any) => 
-    console.log("notessssss : ", notes)
-  )
- }
-
   logout(){
     this.tokenStorage.signOut();
   }
